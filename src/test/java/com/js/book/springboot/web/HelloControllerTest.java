@@ -1,4 +1,4 @@
-package com.js.book.springboot;
+package com.js.book.springboot.web;
 
 import com.js.book.springboot.web.HelloController;
 import org.junit.Test;
