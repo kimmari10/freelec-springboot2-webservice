@@ -20,7 +20,7 @@ public class HelloControllerTest {
     MockMvc mockMvc;
 
     @Test
-    public void hello가_리턴된다() throws Exception {
+    public void return_hello() throws Exception {
         String hello;
 
         mockMvc.perform(get("/hello"))
