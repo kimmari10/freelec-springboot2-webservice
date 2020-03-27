@@ -1,6 +1,8 @@
 package com.js.book.springboot.web;
 
 import com.js.book.springboot.service.PostsService;
+import com.js.book.springboot.web.dto.PostsListResponseDto;
+import com.js.book.springboot.web.dto.PostsResponseDto;
 import lombok.NoArgsConstructor;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Controller;
@@ -30,7 +32,9 @@ public class IndexController {
 
     @GetMapping("/posts/update/{id}")
     public String postsUpdate(@PathVariable Long id, Model model) {
-        model.addAttribute("post", postsService.findById(id));
+        PostsResponseDto dto = postsService.findById(id);
+        model.addAttribute("post", dto);
+
         return "posts-update";
     }
 }

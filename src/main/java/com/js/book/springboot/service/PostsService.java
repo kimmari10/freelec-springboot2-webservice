@@ -43,7 +43,7 @@ public class PostsService {
         return new PostsResponseDto(entity);
     }
 
-    @Transactional
+    @Transactional(readOnly = true)
     public List<PostsListResponseDto> findAllDesc() {
         return postsRepository.findAllDesc().stream()
                 .map(PostsListResponseDto::new)
