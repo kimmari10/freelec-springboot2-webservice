@@ -4,6 +4,7 @@ import com.js.book.springboot.config.auth.CustomOAuth2UserService;
 import com.js.book.springboot.config.auth.LoginUser;
 import com.js.book.springboot.config.auth.dto.SessionUser;
 import com.js.book.springboot.service.PostsService;
+import com.js.book.springboot.service.UserService;
 import com.js.book.springboot.web.dto.PostsResponseDto;
 import lombok.RequiredArgsConstructor;
 import org.springframework.security.core.userdetails.UserDetailsService;
@@ -21,6 +22,7 @@ import javax.servlet.http.HttpSession;
 public class IndexController {
 
     private final PostsService postsService;
+    private final UserService userService;
     private final HttpSession httpSession;
 
 
