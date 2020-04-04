@@ -36,6 +36,14 @@ public class IndexController {
         return "index";
     }
 
+    @GetMapping("/login")
+    public String login(@LoginUser SessionUser user) {
+        if(user != null) {
+            return "redirect:/";
+        }
+        return "login";
+    }
+
     @GetMapping("/posts/save")
     public String postsSave() {
         return "posts-save";
