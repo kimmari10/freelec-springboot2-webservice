@@ -1,11 +1,14 @@
 package com.js.book.springboot.domain.posts;
 
 import com.js.book.springboot.domain.BaseTimeEntity;
+import com.js.book.springboot.domain.file.AttacheFile;
 import lombok.Builder;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 
 import javax.persistence.*;
+import java.util.ArrayList;
+import java.util.List;
 
 @Getter
 @NoArgsConstructor
@@ -23,6 +26,9 @@ public class Posts extends BaseTimeEntity {
     private String content;
 
     private String author;
+
+    @OneToMany
+    List<AttacheFile> attacheFiles = new ArrayList<>();
 
     @Builder
     public Posts(String title, String content, String author) {
