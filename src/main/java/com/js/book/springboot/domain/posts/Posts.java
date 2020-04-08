@@ -27,7 +27,7 @@ public class Posts extends BaseTimeEntity {
 
     private String author;
 
-    @OneToMany
+    @OneToMany(mappedBy = "posts")
     List<AttacheFile> attacheFiles = new ArrayList<>();
 
     @Builder

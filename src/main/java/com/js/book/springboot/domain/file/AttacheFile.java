@@ -17,23 +17,21 @@ public class AttacheFile extends BaseTimeEntity {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private long id;
 
-    private String originName;
+    private String fileName;
 
-    private String storedName;
+    private long size;
 
-    private String path;
-
-    private int size;
+    private String mimeType;
 
     @ManyToOne
     private Posts posts;
 
     @Builder
-    public AttacheFile(String originName, String storedName, String path, int size) {
-        this.originName = originName;
-        this.storedName = storedName;
-        this.path = path;
+    public AttacheFile(String fileName, long size, String mimeType, Posts posts) {
+        this.fileName = fileName;
         this.size = size;
+        this.mimeType = mimeType;
+        this.posts = posts;
     }
 
 }

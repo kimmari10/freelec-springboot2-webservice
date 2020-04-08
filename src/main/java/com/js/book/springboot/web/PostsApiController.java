@@ -1,6 +1,5 @@
 package com.js.book.springboot.web;
 
-import com.js.book.springboot.domain.posts.Posts;
 import com.js.book.springboot.service.PostsService;
 import com.js.book.springboot.web.dto.PostsResponseDto;
 import com.js.book.springboot.web.dto.PostsSaveRequestDto;
