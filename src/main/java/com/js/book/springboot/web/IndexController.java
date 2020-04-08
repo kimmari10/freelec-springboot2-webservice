@@ -3,6 +3,7 @@ package com.js.book.springboot.web;
 import com.js.book.springboot.config.auth.CustomOAuth2UserService;
 import com.js.book.springboot.config.auth.LoginUser;
 import com.js.book.springboot.config.auth.dto.SessionUser;
+import com.js.book.springboot.domain.user.Role;
 import com.js.book.springboot.service.PostsService;
 import com.js.book.springboot.service.UserService;
 import com.js.book.springboot.web.dto.PostsResponseDto;
@@ -33,6 +34,7 @@ public class IndexController {
 
         if(user != null) {
             model.addAttribute("user", user);
+            model.addAttribute("isRoleGuest", user.getRole() == Role.GUEST);
         }
 
         return "index";
