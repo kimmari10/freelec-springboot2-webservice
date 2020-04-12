@@ -6,6 +6,9 @@ branches:
   only:
     - master
 
+before_install:
+  - chmod +x mvnw
+
 # Travis CI 서버의 Cache 활성화
 cache:
   directories:
