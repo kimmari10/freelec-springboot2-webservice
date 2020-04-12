@@ -31,7 +31,6 @@ public class IndexController {
 
         if(user != null) {
             model.addAttribute("user", user);
-            model.addAttribute("isRoleGuest", user.getRole() == Role.GUEST);
         }
 
         return "index";
@@ -40,6 +39,11 @@ public class IndexController {
     @GetMapping("/map")
     public String map() {
         return "map/map";
+    }
+
+    @GetMapping("/navi")
+    public String navi() {
+        return "map/navi";
     }
 
     @GetMapping("/login")

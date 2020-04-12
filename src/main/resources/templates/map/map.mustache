@@ -61,11 +61,19 @@
         <div id="pagination"></div>
     </div>
 </div>
-<div ></div>
+<div id="callNavi">
+    <input type="button" value="네비" onclick="callNavi()" />
+</div>
+<div id="track_list">
+</div>
 
 <script src="https://code.jquery.com/jquery-3.3.1.min.js"></script>
+<script src="https://developers.kakao.com/sdk/js/kakao.js"></script>
 <script type="text/javascript" src="//dapi.kakao.com/v2/maps/sdk.js?appkey=b27ce7afcd6b60446a0e461a729b2026&libraries=services"></script>
 <script>
+    //init
+    Kakao.init('b27ce7afcd6b60446a0e461a729b2026');
+
     // 마커를 담을 배열입니다
     var markers = [];
 
@@ -169,7 +177,15 @@
 
                 // 마커에 클릭이벤트를 등록합니다
                 kakao.maps.event.addListener(marker, 'click', function() {
-                    addTrack(marker, title);
+                    var trackListCnt = $("#track_list .track_item").length;
+                    console.log("trackListCnt : " + trackListCnt);
+
+                    if(trackListCnt >= 5) {
+                        alert("더이상 경유지를 추가할 수 없습니다.");
+                        return false;
+                    } else {
+                        addTrack(marker, title);
+                    }
                 });
 
                 itemEl.onmouseover =  function () {
@@ -316,13 +332,25 @@
             alert('트래킹에 추가되었습니다.');
             // window.location.href = '/';
             //TODO add tracking maker
-            var item = "<div>"+title+"</div>";
+            var item = "<div class='track_item'>"+title+"</div>";
 
-            $(".map_wrap").append(item);
+            $("#track_list").append(item);
         }).fail(function (error) {
             alert(JSON.stringify(error));
         });
     }
+
+    function callNavi(){
+        console.log(">>>> call Navi");
+
+        Kakao.Navi.share({
+            name: "현대백화점 판교점",
+            x: 127.11205203011632,
+            y: 37.39279717586919,
+            coordType: 'wgs84'
+        });
+    }
+
 
 
 </script>
