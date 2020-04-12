@@ -1,10 +1,7 @@
 package com.js.book.springboot.web;
 
 import com.js.book.springboot.service.MapService;
-import com.js.book.springboot.service.PostsService;
 import com.js.book.springboot.web.dto.MapSaveRequestDto;
-import com.js.book.springboot.web.dto.PostsResponseDto;
-import com.js.book.springboot.web.dto.PostsSaveRequestDto;
 import lombok.RequiredArgsConstructor;
 import org.springframework.web.bind.annotation.*;
 

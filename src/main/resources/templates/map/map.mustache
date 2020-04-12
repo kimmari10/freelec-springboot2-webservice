@@ -61,6 +61,7 @@
         <div id="pagination"></div>
     </div>
 </div>
+<div ></div>
 
 <script src="https://code.jquery.com/jquery-3.3.1.min.js"></script>
 <script type="text/javascript" src="//dapi.kakao.com/v2/maps/sdk.js?appkey=b27ce7afcd6b60446a0e461a729b2026&libraries=services"></script>
@@ -315,6 +316,9 @@
             alert('트래킹에 추가되었습니다.');
             // window.location.href = '/';
             //TODO add tracking maker
+            var item = "<div>"+title+"</div>";
+
+            $(".map_wrap").append(item);
         }).fail(function (error) {
             alert(JSON.stringify(error));
         });
