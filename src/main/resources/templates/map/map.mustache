@@ -66,7 +66,9 @@
 </div>
 <div id="track_list">
     {{#tracks}}
-        <div class="track_item">{{title}}</div>
+        <div class="track_item">
+            {{title}} <input class="btnDel" type="button" value="x" onclick="delMap({{id}})" />
+        </div>
     {{/tracks}}
 </div>
 
@@ -354,6 +356,19 @@
         });
     }
 
+
+    function delMap(id) {
+        $.ajax({
+            type: 'DELETE',
+            url: '/api/v1/map/'+id,
+            dataType: 'json',
+            contentType: 'application/json; charset=utf-8',
+        }).done(function () {
+            window.location.href = '/map';
+        }).fail(function (error) {
+            alert(JSON.stringify(error));
+        });
+    }
 
 
 </script>

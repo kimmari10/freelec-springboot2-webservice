@@ -45,8 +45,6 @@ public class IndexController {
     public String map(Model model) {
         List<MapListResponseDto> list = mapService.findAll();
 
-        System.out.println(list.size());
-
         model.addAttribute("tracks", mapService.findAll());
         return "map/map";
     }
