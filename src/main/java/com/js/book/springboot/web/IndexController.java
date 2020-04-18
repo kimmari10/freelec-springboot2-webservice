@@ -2,9 +2,12 @@ package com.js.book.springboot.web;
 
 import com.js.book.springboot.config.auth.LoginUser;
 import com.js.book.springboot.config.auth.dto.SessionUser;
+import com.js.book.springboot.domain.map.posts.Map;
 import com.js.book.springboot.domain.user.Role;
+import com.js.book.springboot.service.MapService;
 import com.js.book.springboot.service.PostsService;
 import com.js.book.springboot.service.UserService;
+import com.js.book.springboot.web.dto.MapListResponseDto;
 import com.js.book.springboot.web.dto.PostsResponseDto;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Controller;
@@ -13,6 +16,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 
 import javax.servlet.http.HttpSession;
+import java.util.List;
 
 
 @RequiredArgsConstructor
@@ -20,6 +24,7 @@ import javax.servlet.http.HttpSession;
 public class IndexController {
 
     private final PostsService postsService;
+    private final MapService mapService;
     private final UserService userService;
     private final HttpSession httpSession;
 
@@ -37,13 +42,13 @@ public class IndexController {
     }
 
     @GetMapping("/map")
-    public String map() {
-        return "map/map";
-    }
+    public String map(Model model) {
+        List<MapListResponseDto> list = mapService.findAll();
 
-    @GetMapping("/navi")
-    public String navi() {
-        return "map/navi";
+        System.out.println(list.size());
+
+        model.addAttribute("tracks", mapService.findAll());
+        return "map/map";
     }
 
     @GetMapping("/login")

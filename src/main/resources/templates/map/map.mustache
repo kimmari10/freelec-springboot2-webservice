@@ -65,6 +65,9 @@
     <input type="button" value="네비" onclick="callNavi()" />
 </div>
 <div id="track_list">
+    {{#tracks}}
+        <div class="track_item">{{title}}</div>
+    {{/tracks}}
 </div>
 
 <script src="https://code.jquery.com/jquery-3.3.1.min.js"></script>
