@@ -348,11 +348,16 @@
     function callNavi(){
         console.log(">>>> call Navi");
 
-        Kakao.Navi.share({
+        Kakao.Navi.start({
             name: "현대백화점 판교점",
             x: 127.11205203011632,
             y: 37.39279717586919,
-            coordType: 'wgs84'
+            coordType: 'wgs84',
+            vehicleType: 7,
+            rpOption: 2,
+            routeInfo: true,
+            sX: 35.02326904383591,
+            sY: 126.78857446263902
         });
     }
 
