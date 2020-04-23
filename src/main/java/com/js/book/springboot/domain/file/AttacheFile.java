@@ -19,18 +19,13 @@ public class AttacheFile extends BaseTimeEntity {
 
     private String fileName;
 
-    private long size;
-
-    private String mimeType;
 
     @ManyToOne
     private Posts posts;
 
     @Builder
-    public AttacheFile(String fileName, long size, String mimeType, Posts posts) {
+    public AttacheFile(String fileName, Posts posts) {
         this.fileName = fileName;
-        this.size = size;
-        this.mimeType = mimeType;
         this.posts = posts;
     }
 

@@ -1,3 +1,38 @@
+$(".fileDrop").on("dragenter dragover",function(e){
+    e.preventDefault();
+});
+
+$(".fileDrop").on("drop",function(e){
+    e.preventDefault();
+
+    var files=e.originalEvent.dataTransfer.files;
+    var file=files[0];
+    var formData = new FormData();
+    formData.append("file",file);
+
+    $.ajax({ //비동기 방식으로 호출
+        url: "/upload/uploadAjax",
+        data: formData,
+        dataType: "text",
+        processData: false,
+        contentType: false,
+        type: "post",
+        success: function(data){
+            //console.log(data);
+            //data : 업로드한 파일 정보와 Http 상태 코드
+            var fileInfo=getFileInfo(data);  //첨부파일의 정보
+            //console.log(fileInfo);
+            var html="<a href='"+fileInfo.getLink+"'>"+
+                fileInfo.fileName+"</a><br>";
+            html += "<input type='hidden' class='file' value='"
+                +fileInfo.fullName+"'>"; //hidden 태그를 추가
+            $("#uploadedList").append(html); //div에 추가
+        }
+    });
+});
+
+
+
 var main = {
     init: function () {
         var _this = this;
