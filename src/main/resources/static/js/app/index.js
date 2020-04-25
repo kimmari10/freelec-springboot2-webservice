@@ -1,38 +1,3 @@
-$(".fileDrop").on("dragenter dragover",function(e){
-    e.preventDefault();
-});
-
-$(".fileDrop").on("drop",function(e){
-    e.preventDefault();
-
-    var files=e.originalEvent.dataTransfer.files;
-    var file=files[0];
-    var formData = new FormData();
-    formData.append("file",file);
-
-    $.ajax({ //비동기 방식으로 호출
-        url: "/upload/uploadAjax",
-        data: formData,
-        dataType: "text",
-        processData: false,
-        contentType: false,
-        type: "post",
-        success: function(data){
-            //console.log(data);
-            //data : 업로드한 파일 정보와 Http 상태 코드
-            var fileInfo=getFileInfo(data);  //첨부파일의 정보
-            //console.log(fileInfo);
-            var html="<a href='"+fileInfo.getLink+"'>"+
-                fileInfo.fileName+"</a><br>";
-            html += "<input type='hidden' class='file' value='"
-                +fileInfo.fullName+"'>"; //hidden 태그를 추가
-            $("#uploadedList").append(html); //div에 추가
-        }
-    });
-});
-
-
-
 var main = {
     init: function () {
         var _this = this;
@@ -54,24 +19,34 @@ var main = {
 
     },
     save: function () {
+
+        var form = $("#postsForm")[0];
+        var formData = new FormData();
+
         var data = {
             title: $('#title').val(),
             author: $('#author').val(),
             content: $('#content').val()
         };
 
+        formData.append("file", $("#uploadFile")[0].files[0]);
+        formData.append("title", $('#title').val());
+        formData.append("author", $('#author').val());
+        formData.append("content", $('#content').val());
+
         $.ajax({
-            type: 'POST',
-            url: '/api/v1/posts',
-            dataType: 'json',
-            contentType: 'application/json; charset=utf-8',
-            data: JSON.stringify(data)
+            url: "/upload/uploadAjax",
+            data: formData,
+            processData: false,
+            contentType: false,
+            type: "POST"
         }).done(function () {
             alert('글이 등록되었습니다.');
             window.location.href = '/';
         }).fail(function (error) {
             alert(JSON.stringify(error));
         });
+
     },
 
     update: function () {
