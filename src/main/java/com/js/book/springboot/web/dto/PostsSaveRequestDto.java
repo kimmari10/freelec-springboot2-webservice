@@ -1,6 +1,7 @@
 package com.js.book.springboot.web.dto;
 
 
+import com.js.book.springboot.domain.file.UploadFile;
 import com.js.book.springboot.domain.posts.Posts;
 import lombok.Builder;
 import lombok.Getter;
@@ -30,6 +31,7 @@ public class PostsSaveRequestDto {
                 .title(title)
                 .content(content)
                 .author(author)
+                .file(UploadFile.builder().file(file).build())
                 .build();
     }
 }

@@ -19,15 +19,7 @@ var main = {
 
     },
     save: function () {
-
-        var form = $("#postsForm")[0];
         var formData = new FormData();
-
-        var data = {
-            title: $('#title').val(),
-            author: $('#author').val(),
-            content: $('#content').val()
-        };
 
         formData.append("file", $("#uploadFile")[0].files[0]);
         formData.append("title", $('#title').val());
@@ -35,7 +27,7 @@ var main = {
         formData.append("content", $('#content').val());
 
         $.ajax({
-            url: "/upload/uploadAjax",
+            url: "/api/v1/posts",
             data: formData,
             processData: false,
             contentType: false,

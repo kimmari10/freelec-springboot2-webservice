@@ -1,5 +1,7 @@
 package com.js.book.springboot.service;
 
+import com.js.book.springboot.domain.file.UploadFile;
+import com.js.book.springboot.domain.file.UploadFileRepository;
 import com.js.book.springboot.domain.posts.Posts;
 import com.js.book.springboot.domain.posts.PostsRepository;
 import com.js.book.springboot.web.dto.PostsListResponseDto;
@@ -19,10 +21,19 @@ import java.util.stream.Collectors;
 public class PostsService {
 
     private final PostsRepository postsRepository;
+    private final UploadFileRepository fileRepository;
 
     @Transactional
     public Long save(PostsSaveRequestDto requestDto) {
-        return postsRepository.save(requestDto.toEntity()).getId();
+
+        Posts posts = requestDto.toEntity();
+        UploadFile file = UploadFile.builder()
+                .file(requestDto.getFile())
+                .posts(posts)
+                .build();
+
+        fileRepository.save(file);
+        return postsRepository.save(posts).getId();
     }
 
     @Transactional

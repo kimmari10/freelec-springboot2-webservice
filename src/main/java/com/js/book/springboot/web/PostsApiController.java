@@ -5,6 +5,7 @@ import com.js.book.springboot.web.dto.PostsResponseDto;
 import com.js.book.springboot.web.dto.PostsSaveRequestDto;
 import lombok.RequiredArgsConstructor;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.multipart.MultipartFile;
 
 @RequiredArgsConstructor
 @RestController
@@ -13,8 +14,13 @@ public class PostsApiController {
     private final PostsService postsService;
 
     @PostMapping("/api/v1/posts")
-    public Long save(@RequestBody PostsSaveRequestDto requestDto) {
-        return postsService.save(requestDto);
+    public Long save(String title, String author, String content, MultipartFile file) {
+        return postsService.save(PostsSaveRequestDto.builder()
+                .title(title)
+                .author(author)
+                .content(content)
+                .file(file)
+                .build());
     }
 
     @PutMapping("/api/v1/posts/{id}")

@@ -20,6 +20,6 @@ public class PostsListResponseDto {
         this.title = entity.getTitle();
         this.author = entity.getAuthor();
         this.modifiedDate = entity.getModifiedDate();
-        this.existFileYn = entity.getAttacheFiles().size() > 0 ? "Y" : "N";
+        this.existFileYn = entity.getUploadFiles().size() > 0 ? "Y" : "N";
     }
 }

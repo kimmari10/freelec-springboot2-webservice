@@ -1,10 +1,11 @@
 package com.js.book.springboot.domain.posts;
 
 import com.js.book.springboot.domain.BaseTimeEntity;
-import com.js.book.springboot.domain.file.AttacheFile;
+import com.js.book.springboot.domain.file.UploadFile;
 import lombok.Builder;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
+import org.springframework.web.multipart.MultipartFile;
 
 import javax.persistence.*;
 import java.util.ArrayList;
@@ -28,13 +29,14 @@ public class Posts extends BaseTimeEntity {
     private String author;
 
     @OneToMany(mappedBy = "posts")
-    List<AttacheFile> attacheFiles = new ArrayList<>();
+    List<UploadFile> uploadFiles = new ArrayList<>();
 
     @Builder
-    public Posts(String title, String content, String author) {
+    public Posts(String title, String content, String author, UploadFile file) {
         this.title = title;
         this.content = content;
         this.author = author;
+        this.uploadFiles.add(file);
     }
 
     public void update(String title, String content) {
