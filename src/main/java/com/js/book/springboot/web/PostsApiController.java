@@ -7,8 +7,6 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
 
-import java.io.IOException;
-
 @RequiredArgsConstructor
 @RestController
 public class PostsApiController {
@@ -16,7 +14,7 @@ public class PostsApiController {
     private final PostsService postsService;
 
     @PostMapping("/api/v1/posts")
-    public Long save(String title, String author, String content, MultipartFile file) throws IOException {
+    public Long save(String title, String author, String content, MultipartFile file) throws Exception {
         return postsService.save(PostsSaveRequestDto.builder()
                 .title(title)
                 .author(author)

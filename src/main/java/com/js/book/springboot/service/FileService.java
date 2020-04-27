@@ -11,7 +11,7 @@ import java.io.IOException;
 
 @Service
 public class FileService {
-    public UploadFile fileUplaod(MultipartFile file) throws IOException {
+    public UploadFile fileUplaod(MultipartFile file) throws Exception{
 
         String originalFilename = file.getOriginalFilename();
         String sourceFileNameExtension = FilenameUtils.getExtension(originalFilename);

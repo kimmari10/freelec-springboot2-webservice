@@ -27,7 +27,7 @@ public class PostsService {
     private final FileService fileService;
 
     @Transactional
-    public Long save(PostsSaveRequestDto requestDto) throws IOException {
+    public Long save(PostsSaveRequestDto requestDto) throws Exception {
 
         Posts posts = requestDto.toEntity();
         UploadFile file = UploadFile.builder()
