@@ -11,6 +11,8 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import java.io.File;
+import java.io.IOException;
 import java.util.List;
 import java.util.stream.Collector;
 import java.util.stream.Collectors;
@@ -22,15 +24,18 @@ public class PostsService {
 
     private final PostsRepository postsRepository;
     private final UploadFileRepository fileRepository;
+    private final FileService fileService;
 
     @Transactional
-    public Long save(PostsSaveRequestDto requestDto) {
+    public Long save(PostsSaveRequestDto requestDto) throws IOException {
 
         Posts posts = requestDto.toEntity();
         UploadFile file = UploadFile.builder()
                 .file(requestDto.getFile())
                 .posts(posts)
                 .build();
+
+        fileService.fileUplaod(requestDto.getFile());
 
         fileRepository.save(file);
         return postsRepository.save(posts).getId();
