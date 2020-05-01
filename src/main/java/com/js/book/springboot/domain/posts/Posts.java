@@ -28,7 +28,7 @@ public class Posts extends BaseTimeEntity {
 
     private String author;
 
-    @OneToMany(mappedBy = "posts")
+    @OneToMany(mappedBy = "posts", cascade = CascadeType.REMOVE)
     List<UploadFile> uploadFiles = new ArrayList<>();
 
     @Builder
