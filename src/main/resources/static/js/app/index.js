@@ -20,8 +20,12 @@ var main = {
     },
     save: function () {
         var formData = new FormData();
+        var fileArr = $("#uploadFile")[0].files;
 
-        formData.append("file", $("#uploadFile")[0].files[0]);
+        for (var i = 0; i < fileArr.length; i++) {
+            formData.append("file", fileArr[i]);
+        }
+        //formData.append("file", $("#uploadFile")[0].files);
         formData.append("title", $('#title').val());
         formData.append("author", $('#author').val());
         formData.append("content", $('#content').val());

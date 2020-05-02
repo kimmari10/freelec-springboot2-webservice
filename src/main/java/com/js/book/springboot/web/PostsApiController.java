@@ -14,12 +14,13 @@ public class PostsApiController {
     private final PostsService postsService;
 
     @PostMapping("/api/v1/posts")
-    public Long save(String title, String author, String content, MultipartFile file) throws Exception {
+    public Long save(String title, String author, String content, MultipartFile[] file) throws Exception {
+        //TODO list 할당
         return postsService.save(PostsSaveRequestDto.builder()
                 .title(title)
                 .author(author)
                 .content(content)
-                .file(file)
+                .file(file[0])
                 .build());
     }
 
