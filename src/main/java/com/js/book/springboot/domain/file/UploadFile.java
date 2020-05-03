@@ -5,7 +5,6 @@ import com.js.book.springboot.domain.posts.Posts;
 import lombok.Builder;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
-import org.springframework.web.multipart.MultipartFile;
 
 import javax.persistence.*;
 
@@ -21,12 +20,12 @@ public class UploadFile extends BaseTimeEntity {
     private String fileName;
 
 
-    @ManyToOne
+    @ManyToOne(cascade = CascadeType.ALL)
     private Posts posts;
 
     @Builder
-    public UploadFile(MultipartFile file, Posts posts) {
-        this.fileName = file.getOriginalFilename();
+    public UploadFile(String fileName, Posts posts) {
+        this.fileName = fileName;
         this.posts = posts;
     }
 

@@ -8,22 +8,25 @@ import org.springframework.web.multipart.MultipartFile;
 
 import java.io.File;
 import java.io.IOException;
+import java.util.List;
 
 @Service
 public class FileService {
-    public UploadFile fileUplaod(MultipartFile file) throws Exception{
+    public UploadFile fileUplaod(List<MultipartFile> file) throws Exception{
 
-        String originalFilename = file.getOriginalFilename();
-        String sourceFileNameExtension = FilenameUtils.getExtension(originalFilename);
-        File storedFile;
+        for (MultipartFile mf: file) {
+            String originalFilename = mf.getOriginalFilename();
+            String sourceFileNameExtension = FilenameUtils.getExtension(originalFilename);
+            File storedFile;
 
-        String storedFileName = RandomStringUtils.randomAlphanumeric(10) + "." + originalFilename;
-        do {
-            storedFile = new File("C:\\attachments\\" + storedFileName);
-        } while (storedFile.exists());
+            String storedFileName = RandomStringUtils.randomAlphanumeric(10) + "." + originalFilename;
+            do {
+                storedFile = new File("C:\\attachments\\" + storedFileName);
+            } while (storedFile.exists());
 
-        storedFile.getParentFile().mkdirs();
-        file.transferTo(storedFile);
+            storedFile.getParentFile().mkdirs();
+            mf.transferTo(storedFile);
+        }
 
         return null;
     }

@@ -10,11 +10,10 @@ import com.js.book.springboot.web.dto.PostsSaveRequestDto;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
+import org.springframework.web.multipart.MultipartFile;
 
-import java.io.File;
-import java.io.IOException;
+import java.util.ArrayList;
 import java.util.List;
-import java.util.stream.Collector;
 import java.util.stream.Collectors;
 
 
@@ -27,17 +26,28 @@ public class PostsService {
     private final FileService fileService;
 
     @Transactional
-    public Long save(PostsSaveRequestDto requestDto) throws Exception {
+    public Long save(PostsSaveRequestDto postsSaveRequestDto) throws Exception {
+        List<UploadFile> uploadFileList = new ArrayList<>();
 
-        Posts posts = requestDto.toEntity();
-        UploadFile file = UploadFile.builder()
-                .file(requestDto.getFile())
-                .posts(posts)
-                .build();
+        Posts posts = postsSaveRequestDto.toEntity();
 
-        fileService.fileUplaod(requestDto.getFile());
+        //파일저장
+        fileService.fileUplaod(postsSaveRequestDto.getUploadFiles());
 
-        fileRepository.save(file);
+        //파일DB저장
+        List<MultipartFile> fileList = postsSaveRequestDto.getUploadFiles();
+        for (MultipartFile mf:fileList) {
+            UploadFile file = UploadFile.builder()
+                    .fileName(mf.getOriginalFilename())
+                    .posts(posts)
+                    .build();
+
+            uploadFileList.add(file);
+            fileRepository.save(file);
+        }
+
+        Posts.builder().uploadFiles(uploadFileList);
+
         return postsRepository.save(posts).getId();
     }
 

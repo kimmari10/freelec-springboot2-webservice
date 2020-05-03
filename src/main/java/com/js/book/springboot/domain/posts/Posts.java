@@ -27,15 +27,15 @@ public class Posts extends BaseTimeEntity {
 
     private String author;
 
-    @OneToMany(mappedBy = "posts", cascade = CascadeType.REMOVE)
+    @OneToMany(mappedBy = "posts", cascade = CascadeType.ALL)
     List<UploadFile> uploadFiles = new ArrayList<>();
 
     @Builder
-    public Posts(String title, String content, String author, UploadFile file) {
+    public Posts(String title, String content, String author, List<UploadFile> uploadFiles) {
         this.title = title;
         this.content = content;
         this.author = author;
-        this.uploadFiles.add(file);
+        this.uploadFiles = uploadFiles;
     }
 
     public void update(String title, String content) {
