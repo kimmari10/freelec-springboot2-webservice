@@ -66,6 +66,7 @@ public class IndexController {
     public String postsUpdate(@PathVariable Long id, Model model) {
         PostsResponseDto dto = postsService.findById(id);
         model.addAttribute("post", dto);
+        model.addAttribute("fileList", dto.getUploadFileList());
 
         return "posts-update";
     }
