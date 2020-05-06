@@ -23,7 +23,7 @@
             </div>
             <div class="form-group">
                 {{#fileList}}
-                    <label for="uploadFile">{{fileName}}</label>
+                    <a href="/fileDown/{{id}}">{{fileName}}</a>
                     <input id="uploadFile" name="file" type="file" value="{{id}}" />
                 {{/fileList}}
             </div>
