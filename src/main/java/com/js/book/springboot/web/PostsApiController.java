@@ -77,7 +77,6 @@ public class PostsApiController {
             //파일 다운로드 헤더 지정
             response.reset();
             response.setContentType("application/octet-stream");
-            //response.setHeader("Content-Description", "JSP Generated Data");
 
             // IE
             if (client.indexOf("MSIE") != -1) {
