@@ -2,9 +2,7 @@ package com.js.book.springboot.web.dto;
 
 import com.js.book.springboot.domain.file.UploadFile;
 import com.js.book.springboot.domain.posts.Posts;
-import lombok.Builder;
 import lombok.Getter;
-import org.springframework.web.multipart.MultipartFile;
 
 import java.util.List;
 

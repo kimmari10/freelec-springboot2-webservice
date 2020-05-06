@@ -1,6 +1,5 @@
 package com.js.book.springboot.web;
 
-import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.js.book.springboot.domain.posts.Posts;
 import com.js.book.springboot.domain.posts.PostsRepository;

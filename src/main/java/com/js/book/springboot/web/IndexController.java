@@ -2,8 +2,6 @@ package com.js.book.springboot.web;
 
 import com.js.book.springboot.config.auth.LoginUser;
 import com.js.book.springboot.config.auth.dto.SessionUser;
-import com.js.book.springboot.domain.map.posts.Map;
-import com.js.book.springboot.domain.user.Role;
 import com.js.book.springboot.service.MapService;
 import com.js.book.springboot.service.PostsService;
 import com.js.book.springboot.service.UserService;

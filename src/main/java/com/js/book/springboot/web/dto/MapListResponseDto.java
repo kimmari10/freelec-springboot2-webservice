@@ -1,11 +1,8 @@
 package com.js.book.springboot.web.dto;
 
 import com.js.book.springboot.domain.map.posts.Map;
-import com.js.book.springboot.domain.posts.Posts;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
-
-import java.time.LocalDateTime;
 
 @Getter
 @NoArgsConstructor

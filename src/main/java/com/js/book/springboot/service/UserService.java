@@ -1,6 +1,5 @@
 package com.js.book.springboot.service;
 
-import com.js.book.springboot.config.auth.LoginUser;
 import com.js.book.springboot.config.auth.dto.SessionUser;
 import com.js.book.springboot.domain.user.User;
 import com.js.book.springboot.domain.user.UserRepository;

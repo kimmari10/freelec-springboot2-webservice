@@ -2,9 +2,8 @@ package com.js.book.springboot.service;
 
 import com.js.book.springboot.domain.map.posts.Map;
 import com.js.book.springboot.domain.map.posts.MapRepository;
-import com.js.book.springboot.domain.posts.Posts;
-import com.js.book.springboot.domain.posts.PostsRepository;
-import com.js.book.springboot.web.dto.*;
+import com.js.book.springboot.web.dto.MapListResponseDto;
+import com.js.book.springboot.web.dto.MapSaveRequestDto;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
