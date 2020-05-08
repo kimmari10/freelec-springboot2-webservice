@@ -6,6 +6,7 @@ import com.js.book.springboot.service.PostsService;
 import com.js.book.springboot.web.dto.PostsResponseDto;
 import com.js.book.springboot.web.dto.PostsSaveRequestDto;
 import lombok.RequiredArgsConstructor;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
 
@@ -19,6 +20,9 @@ public class PostsApiController {
 
     private final PostsService postsService;
     private final FileService fileService;
+
+    @Value("${file.path}")
+    private String filePath;
 
     @PostMapping("/api/v1/posts")
     public Long save(String title, String author, String content, MultipartFile[] file) throws Exception {
@@ -52,10 +56,6 @@ public class PostsApiController {
         UploadFile uploadFile = fileService.getFile(id);
 
         //파일 업로드된 경로
-        String fileUrl = "C:\\attachments\\";
-//        String fileUrl = uploadFile.getFileUrl();
-//        fileUrl += "/";
-        String savePath = fileUrl;
         String fileName = uploadFile.getFileName();
 
         //실제 내보낼 파일명
@@ -63,14 +63,12 @@ public class PostsApiController {
         InputStream in = null;
         OutputStream os = null;
         File file = null;
-        boolean skip = false;
         String client = "";
 
         //파일을 읽어 스트림에 담기
         try{
-            file = new File(savePath, fileName);
+            file = new File(filePath, fileName);
             in = new FileInputStream(file);
-
 
             client = request.getHeader("User-Agent");
 
