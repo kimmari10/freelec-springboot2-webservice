@@ -32,21 +32,23 @@ public class PostsService {
         Posts posts = postsSaveRequestDto.toEntity();
 
         //파일저장
-        fileService.fileUplaod(postsSaveRequestDto.getUploadFiles());
+        if (postsSaveRequestDto.getUploadFiles() != null) {
+            fileService.fileUplaod(postsSaveRequestDto.getUploadFiles());
 
-        //파일DB저장
-        List<MultipartFile> fileList = postsSaveRequestDto.getUploadFiles();
-        for (MultipartFile mf:fileList) {
-            UploadFile file = UploadFile.builder()
-                    .fileName(mf.getOriginalFilename())
-                    .posts(posts)
-                    .build();
+            //파일DB저장
+            List<MultipartFile> fileList = postsSaveRequestDto.getUploadFiles();
+            for (MultipartFile mf : fileList) {
+                UploadFile file = UploadFile.builder()
+                        .fileName(mf.getOriginalFilename())
+                        .posts(posts)
+                        .build();
 
-            uploadFileList.add(file);
-            fileRepository.save(file);
+                uploadFileList.add(file);
+                fileRepository.save(file);
+            }
+
+            Posts.builder().uploadFiles(uploadFileList);
         }
-
-        Posts.builder().uploadFiles(uploadFileList);
 
         return postsRepository.save(posts).getId();
     }

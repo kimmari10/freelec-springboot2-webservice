@@ -25,7 +25,7 @@ public class PostsSaveRequestDto {
         this.title = title;
         this.content = content;
         this.author = author;
-        this.uploadFiles = Arrays.asList(file);
+        if(file != null) this.uploadFiles = Arrays.asList(file);
     }
 
     public Posts toEntity() {

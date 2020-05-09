@@ -9,10 +9,11 @@ import java.io.IOException;
 @Service
 public class BotService {
     private final String ENTER = "\\n";
+    private final String SEP = ",";
 
     //날씨정보
     public String getWeather(String cmd) {
-        String result = cmd.replace("!", "");
+        String result = cmd.replace("!", "") + SEP;
         String place = cmd.replace("!", "").replace("날씨", "").trim();
 
         String nowTemp = "현재온도 : ";
@@ -43,7 +44,7 @@ public class BotService {
 //            System.out.println(moist);
 //            System.out.println(wind);
 
-            result += nowTemp + ENTER + upTemp + ENTER + downTemp + ENTER + moist + ENTER + wind;
+            result += nowTemp + SEP + upTemp + SEP + downTemp + SEP + moist + SEP + wind;
         } catch (IOException e) {
             e.printStackTrace();
         } finally {
