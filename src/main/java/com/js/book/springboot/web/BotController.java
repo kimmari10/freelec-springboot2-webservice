@@ -21,7 +21,7 @@ public class BotController {
             if(cmd.endsWith("날씨")) {
                 return botService.getWeather(cmd);
             } else {
-                return "알수 없는 명령어여유..";
+                return "";
             }
         } else {
             return "";
